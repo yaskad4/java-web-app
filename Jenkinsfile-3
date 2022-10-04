@@ -21,6 +21,7 @@ pipeline {
                     reportName: 'Trivy Scan',
                     reportTitles: 'Trivy Scan'
                 ]
+         sh 'grype java-web-app:latest --scope AllLayers '
       }
     }
   }
