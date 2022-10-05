@@ -1,4 +1,5 @@
-FROM aquasec/trivy:latest
+FROM bitnami/trivy:latest
+#FROM aquasec/trivy:latest
 
 RUN mkdir -p .cache
 RUN mkdir -p contrib
