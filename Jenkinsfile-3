@@ -1,27 +1,35 @@
 pipeline {
-  agent any
+  agent none
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   stages {
     stage('Build') {
+      agent any
       steps {
-        sh 'docker build -t darinpope/java-web-app:latest .'
+        sh 'docker build -f ./Dockerfileold -t darinpope/java-web-app:latest .'
       }
     }
     stage('Scan') {
+        agent {
+            dockerfile {
+                args '-v /var/run/docker.sock:/var/run/docker.sock'
+                args "--entrypoint=''"
+            }
+        }
       steps {
-        sh 'trivy image darinpope/java-web-app:latest --no-progress --exit-code 0 --severity HIGH,CRITICAL --format template --template "@/var/jenkins_home/html.tpl" -o scan.html'
-          publishHTML target : [
-                    allowMissing: true,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: './',
-                    reportFiles: 'scan.html',
-                    reportName: 'Trivy Scan',
-                    reportTitles: 'Trivy Scan'
-                ]
-         sh 'grype java-web-app:latest --scope AllLayers '
+          // 'docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:latest image darinpope/java-web-app:latest --no-progress --exit-code 0 --severity HIGH,CRITICAL --format template --template "@/var/jenkins_home/html.tpl" -o scan.html'
+          sh 'trivy image darinpope/java-web-app:latest --exit-code 0 --severity HIGH,CRITICAL'
+          //publishHTML target : [
+            //        allowMissing: true,
+            //        alwaysLinkToLastBuild: true,
+            //       keepAll: true,
+            //        reportDir: './',
+            //        reportFiles: 'scan.html',
+            //        reportName: 'Trivy Scan',
+            //        reportTitles: 'Trivy Scan'
+            //    ]
+        // sh 'grype darinpope/java-web-app:latest --scope AllLayers '
       }
     }
   }
