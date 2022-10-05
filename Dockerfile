@@ -4,3 +4,5 @@ services:
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
         image: 'aquasec/trivy:latest'
+ENTRYPOINT ["fully-static-binary"]
+CMD ["--help"]
