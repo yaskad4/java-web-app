@@ -6,7 +6,8 @@ RUN mkdir -p contrib
 RUN chmod -R 777 .cache
 RUN chmod -R 777 contrib
 
-RUN curl -o ./contrib/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
+RUN uname -a
+# RUN curl -o ./contrib/html.tpl https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl
 
 
 
