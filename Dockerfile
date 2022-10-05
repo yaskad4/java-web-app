@@ -2,9 +2,8 @@ FROM bitnami/trivy:latest
 #FROM aquasec/trivy:latest
 
 RUN mkdir -p .cache
-RUN mkdir -p .contrib
-
 RUN chmod -R 777 .cache
+RUN mkdir -p .contrib
 RUN chmod -R 777 .contrib
 
 RUN apk update
