@@ -1,10 +1,7 @@
 FROM aquasec/trivy:latest
 
-ARG http_proxy
-ARG https_proxy
-
-RUN export http_proxy=http_proxy 
-RUN export https_proxy=https_proxy 
+ENV http_proxy 'http://10.64.42.200:3128'
+ENV https_proxy 'http://10.64.42.200:3128'
 
 RUN mkdir -p .cache
 RUN chmod -R 777 .cache
