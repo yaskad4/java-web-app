@@ -1,5 +1,6 @@
 FROM aquasec/trivy:latest
 
+ARG http_proxy
 ARG https_proxy
 
 RUN mkdir -p .cache
