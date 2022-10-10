@@ -11,7 +11,7 @@ RUN rc-update add docker boot
 
 RUN adduser -D -u 1004 dmsis 
 
-RUN addgroup docker && addgroup dmsis docker
+RUN addgroup dmsis docker
 
 RUN mkdir -p .cache
 RUN chmod -R 777 .cache
