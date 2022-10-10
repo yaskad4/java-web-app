@@ -6,7 +6,7 @@ ENV https_proxy 'http://10.64.42.200:3128'
 RUN apk update
 RUN apk --no-cache add curl
 RUN apk --no-cache add docker openrc
-RUNM rc-update add docker boot
+RUN rc-update add docker boot
 
 
 RUN adduser -D -u 1004 dmsis 
