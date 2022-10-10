@@ -7,6 +7,7 @@ RUN apk update
 RUN apk --no-cache add curl
 RUN apk --no-cache add docker openrc
 RUN rc-update add docker boot
+RUN echo '{"insecure-registries" : [ $PROXY_HOST:$PROXY_PORT ]}' > /etc/docker/daemon.json
 
 
 RUN adduser -D -u 1004 dmsis 
