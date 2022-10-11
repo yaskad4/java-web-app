@@ -5,8 +5,10 @@ ENV https_proxy 'http://10.64.42.200:3128'
 
 RUN apk update
 RUN apk --no-cache add curl
-RUN apk --no-cache add docker openrc
-RUN rc-update add docker boot
+# RUN apk --no-cache add docker openrc
+# RUN rc-update add docker boot
+RUN apk add --no-cache docker-cli
+
 RUN mkdir -p /etc/docker && touch /etc/docker/daemon.json
 RUN echo '{"insecure-registries" : [ "10.64.42.200:3128" ] }' > /etc/docker/daemon.json
 
