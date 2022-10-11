@@ -14,7 +14,6 @@ RUN echo '{"insecure-registries" : [ "10.64.42.200:3128" ] }' > /etc/docker/daem
 RUN adduser -D -u 1004 dmsis 
 
 RUN addgroup dmsis docker
-RUN chmod 666 /var/run/docker.sock
 
 RUN mkdir -p .cache
 RUN chmod -R 777 .cache
